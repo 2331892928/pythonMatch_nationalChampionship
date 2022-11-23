@@ -46,8 +46,16 @@ import requests
 class Solution:
 
     def random_num_in_sheet(self) -> int:
-        df = pd.read_csv("http://zxbs.itmc.cn:80/jsnlpythoncw1/data/user/14746/261/fj_random_num.xlsx")
-        print(df)
+        df = pd.read_excel("http://zxbs.itmc.cn:80/jsnlpythoncw1/data/user/14746/261/fj_random_num.xlsx",sheet_name=None)
+        sum2 = 0
+        for sheetname,datas in df.items():
+            # print(sheetname)
+
+            sum1 = datas.sum()
+            sum1[0] = 0
+            sum2 = sum2 + sum(sum1)
+            # print(sum(sum1))
+        return sum2
 
 S = Solution()
 print(S.random_num_in_sheet())
